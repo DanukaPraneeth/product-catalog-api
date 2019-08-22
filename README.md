@@ -38,6 +38,7 @@ java -jar target/adcash-product-catalog-0.0.1-SNAPSHOT.jar
 * Database design was implemented in tables considering the many-to-many relationship between products and categories. You can see the db design at [here](https://drive.google.com/open?id=1hKXyZyo4eoRTI4EeMAwgK460RkzLkioq).
 * Steps followed in developing this project can be viewed in the commits of the git repository.
 
+
 ### Implementation
 
 #### Data Access Layer
@@ -45,15 +46,19 @@ java -jar target/adcash-product-catalog-0.0.1-SNAPSHOT.jar
 - Mysql batch updates are used for database updates in a group of items and mysql transactions are used to make sure each valid API request is processed completely or rejected in an error.
 - Mysql exceptions captured in this layer is throws as related custom exceptions to the business layer
 
+
 #### Error Handling
 - Errors are handled separately in each layer and transferred to the it's parent layers as suitable custom exceptions. 
 - Finally a error specific error response is delivered to the end user
+
 
 #### User Management
 - Admin users can access all the APIs without any restrictions
 - Non-admin users can only access the APIs to search information (search products, categories and users)
 - Each API request should have the basic auth header with valid username and password
 - Any user should register in the system through an admin user to access any of these APIs. Requests without a valid basic auth token will be rejected.
+- Password of the users are stored in dabase after encrypting via the spring *'BCryptPasswordEncoder'*
+
 
 ### Further Improvements
 - Unit tests to cover the full functionality of the APIs
@@ -107,8 +112,8 @@ java -jar target/adcash-product-catalog-0.0.1-SNAPSHOT.jar
       -H 'Authorization: Basic cm9vdDpwYXNzd29yZA==' \
       -H 'Content-Type: application/json' \
       -H 'cache-control: no-cache' \
-      -d '{  
-       "categories":[  
+      -d '{
+       "categories":[
           "Ladies",
           "Sales"    ]
     }'
@@ -122,8 +127,8 @@ java -jar target/adcash-product-catalog-0.0.1-SNAPSHOT.jar
       -H 'Authorization: Basic cm9vdDpwYXNzd29yZA==' \
       -H 'Content-Type: application/json' \
       -H 'cache-control: no-cache' \
-      -d '{  
-       "product_list":[  
+      -d '{
+       "product_list":[
           { 
              "product_name":"saree",
              "product_code":"102",

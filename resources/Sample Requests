@@ -1,0 +1,202 @@
+Curl Requests related to Category detials:
+=========================================
+
+
+1) Get all categories
+
+curl -X GET \
+  http://localhost:8080/v1/search/category \
+  -H 'Authorization: Basic cm9vdDpwYXNzd29yZA==' \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache'
+
+
+
+2) Add new categories
+
+curl -X POST \
+  http://localhost:8080/v1/add/category/ \
+  -H 'Authorization: Basic cm9vdDpwYXNzd29yZA==' \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache' \
+  -d '{  
+   "categories":[  
+      "Ladies",
+      "Sales"    ]
+}'
+
+
+
+3) Update existing categoroes
+
+curl -X PUT \
+  http://localhost:8080/v1/update/category \
+  -H 'Authorization: Basic cm9vdDpwYXNzd29yZA==' \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache' \
+  -d '[
+  {
+      "existing_category" : "Sales",
+      "new_category": "Mega Sales"
+  },
+  {
+      "existing_category" : "Ladies",
+      "new_category": "Gents"
+  }
+]'
+
+
+
+4) Delete an existing category
+
+curl -X DELETE \
+  http://localhost:8080/v1/delete/category/{category_name} \
+  -H 'Authorization: Basic cm9vdDpwYXNzd29yZA==' \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache'
+
+
+
+
+Curl Requests related to Product detials:
+=========================================
+
+
+1) Get all products
+
+curl -X GET \
+  http://localhost:8080/v1/search/product \
+  -H 'Authorization: Basic cm9vdDpwYXNzd29yZA==' \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache'
+
+
+2) Get all products by category
+
+curl -X GET \
+  http://localhost:8080/v1/search/product/{category} \
+  -H 'Authorization: Basic cm9vdDpwYXNzd29yZA==' \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache'
+
+
+
+3) Add new products
+
+curl -X POST \
+  http://localhost:8080/v1/add/product \
+  -H 'Authorization: Basic cm9vdDpwYXNzd29yZA==' \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache' \
+  -d '{  
+   "product_list":[  
+      { 
+         "product_name":"saree",
+         "product_code":"102",
+         "product_category" : ["Ladies", "Sales"]
+      },
+      {  
+        
+         "product_name":"frock",
+         "product_code":"202",
+         "product_category" : ["Sales"]
+      }
+   ]
+}'
+
+
+
+4) Update existing products
+
+curl -X PUT \
+  http://localhost:8080/v1/update/product \
+  -H 'Authorization: Basic cm9vdDpwYXNzd29yZA==' \
+  -H 'Content-Type: application/json' \
+  -H 'Postman-Token: f964d51e-d913-4d26-8839-88e39e07ac9d' \
+  -H 'cache-control: no-cache' \
+  -d '[
+  {
+      "product_code" : 102,
+      "new_product_details":{
+        "product_name": "saree",
+        "product_code": 10,
+        "product_category" : ["Damaged", "Gents"]
+        }
+  },
+    {
+      "product_code" : 202,
+      "new_product_details":{
+          "product_name": "frock",
+          "product_code": 25,
+             "product_category" : ["Damaged", "Ladies", "Mega Sales", "Gents"]
+        }
+  }
+]'
+
+
+5) Delete existing product
+
+curl -X DELETE \
+  http://localhost:8080/v1/delete/product/{product code} \
+  -H 'Authorization: Basic cm9vdDpwYXNzd29yZA==' \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache'
+
+
+
+
+
+Curl Requests related to User detials:
+=========================================
+
+
+1) Get all users
+
+curl -X GET \
+  http://localhost:8080/v1/search/user \
+  -H 'Authorization: Basic cm9vdDpwYXNzd29yZA==' \
+  -H 'cache-control: no-cache'
+
+
+2) Add new users
+
+curl -X POST \
+  http://localhost:8080/v1/add/user \
+  -H 'Authorization: Basic cm9vdDpwYXNzd29yZA==' \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache' \
+  -d '[
+    {
+        "name": "user1",
+        "password": "user1password",
+        "admin_user": true
+    },
+     {
+        "name": "user2",
+        "password": "user2password",
+        "admin_user": false
+    }
+]'
+
+
+
+3) Update existing users
+
+curl -X PUT \
+  http://localhost:8080/v1/update/user/{user_name} \
+  -H 'Authorization: Basic cm9vdDpwYXNzd29yZA==' \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache' \
+  -d ' {
+        "name": "user1",
+        "password": "password",
+        "admin_user": false
+    }'
+
+
+4) Delete an existing users
+
+curl -X DELETE \
+  http://localhost:8080/v1/delete/user/{user_name} \
+  -H 'Authorization: Basic cm9vdDpwYXNzd29yZA==' \
+  -H 'cache-control: no-cache'
